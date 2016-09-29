@@ -46,8 +46,6 @@ end
 	* none
 end
 
-* end	<-- yes/no?
-
 
 func steadyStateAvailability() \
 	(1 - prempty(duplexModel1B, diskSubsystem) * (1- prempty(duplexModel1B, processor)
@@ -56,3 +54,5 @@ expr steadyStateAvailability()
 
 *	Should we set the weight of the immediate transitions to 1, whatever or
 *		is it possible to skip them?
+
+end

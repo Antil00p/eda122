@@ -48,7 +48,6 @@ end
 	processorFailure tRepairDisk 1
 end
 
-* end	<-- yes/no?
 
 
 func steadyStateAvailability() \
@@ -58,3 +57,5 @@ expr steadyStateAvailability()
 
 *	Should we set the weight of the immediate transitions to 1, whatever or
 *		is it possible to skip them?
+
+end
