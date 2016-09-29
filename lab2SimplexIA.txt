@@ -1,0 +1,91 @@
+format 8
+
+bind
+	lambdaDisk ???
+	lambdaProcessor ???
+	myDisk ??
+	myProcessor ??
+end
+
+markov simplexIA
+	A B lambdaDisk
+	B D lambdaProcessor
+	A C lambdaProcessor
+	C D lambdaDisk
+	D B myProcessor
+	D C myDisk
+	B A myDisk
+	C A myProcessor
+end
+	A 1.0
+end
+
+* ------------------------------------------------------------
+
+markov simplex2A
+	A B lambdaDisk
+	A C lambdaProcessor
+	B E lambdaProcessor
+	B A myDisk
+	C D lambdaDisk
+	C A myProcessor
+	D B myProcessor
+	E C myDisk
+	
+end
+	A 1.0
+end
+
+* ------------------------------------------------------------
+
+markov duplex2B
+	A B 2 * lambdaDisk
+	A C 2 * lambdaProcessor
+	B A myDisk
+	B D lambdaDisk
+	B F 2 * lambdaProcessor
+	C A myProcessor
+	C E lambdaProcessor
+	C F 2 * lambdaDisk
+	D B myDisk
+	E C myProcessor
+	F B myProcessor
+	F G lambdaDisk
+	F H lambdaProcessor
+	G F myDisk
+	H F myProcessor
+end
+	A 1.0
+end
+
+* ------------------------------------------------------------
+
+markov duplex3B
+	A B 2 * lambdaDisk
+	A C 2 * lambdaProcessor
+	B A myDisk
+	B D lambdaDisk
+	B E 2 * lambdaProcessor
+	C A myProcessor
+	C E 2 * lambdaDisk
+	C F lambdaProcessor
+	D B myDisk
+	D G 2 * lambdaProcessor
+	E B myProcessor
+	E G lambdaDisk
+	E H lambdaProcessor
+	F C myProcessor
+	F H 2 * lambdaDisk
+	G E myDisk
+	G I lambdaProcessor
+	H E myProcessor
+	H I lambdaDisk
+	I G myProcessor
+end
+	A 1.0
+end
+
+
+
+
+

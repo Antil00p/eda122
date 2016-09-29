@@ -1,0 +1,76 @@
+format 8
+
+* add time rates
+bind
+	lambdaProcessor ??
+	lambdaDisk ??
+	myProcessor ??
+	myDisk ??
+	c 0.99
+end
+
+gspn duplexModel34
+* places
+	diskSubsystem 1
+	processor 1
+	diskFailure 0
+	processorFailure 0
+	diskToCover 0
+	procToCover 0
+end
+
+* timed transitions
+	tFailDisk dep diskSubsystem lambdaDisk
+	tFailProcessor dep processor lambdaProcessor
+	tRepairDisk ind myDisk
+	tRepairProcessor ind myProcessor
+end
+
+* immediate transitions
+	tDiskCovered ind c
+	tDiskNotCovered ind (1-c)
+	
+	tProcCovered ind c
+	tProcNotCovered ind (1-c)
+end
+
+* input arcs
+	diskSubsystem tFailDisk 1
+	diskSubsystem tDiskNotCovered 1
+	diskToCover tDiskCovered 1
+	diskToCover tDiskNotCovered 1
+	diskFailure tRepairDisk 1
+	
+	processor tFailProcessor 1
+	processor tProcNotCovered 1
+	procToCover tProcCovered 1
+	procToCover tProcNotCovered 1
+	processorFailure tRepairProcessor 1
+	
+end
+
+* output arcs
+	tFailDisk diskToCover 1
+	tDiskCovered diskFailure 1
+	tDiskNotCovered diskFailure 2
+	tRepairDisk diskSubsystem 1
+
+	tFailProcessor procToCover 1
+	tProcCovered processorFailure 1
+	tProcNotCovered processorFailure 2
+	tRepairProcessor processor 1
+end
+
+* inhibitor arcs
+	* none
+end
+
+func steadyStateAvailability() \
+	(1 - prempty(duplexModel34, diskSubsystem) * (1 - prempty(duplexModel34, processor)
+
+expr steadyStateAvailability()
+
+*	Should we set the weight of the immediate transitions to 1, whatever or
+*		is it possible to skip them?
+
+end

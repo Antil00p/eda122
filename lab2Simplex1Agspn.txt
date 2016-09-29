@@ -1,0 +1,57 @@
+format 8
+
+* add time rates
+bind
+	lambdaProcessor ??
+	lambdaDisk ??
+	myProcessor ??
+	myDisk ??
+end
+
+gspn simplexModelA1
+* places
+	diskSubsystem 1
+	processor 1
+	systemFailure 0
+end
+
+* timed transitions
+	tFailDisk dep diskSubsystem lambdaDisk
+	tFailProcessor dep processor lambdaProcessor
+	tRepairDisk ind myDisk
+	tRepairProcessor ind myProcessor
+end
+
+* immediate transitions
+	* none
+end
+
+* input arcs
+	diskSubsystem tFailDisk 1
+	processor tFailProcessor 1
+	systemFailure tRepairDisk 1
+	systemFailure tRepairProcessor 1
+end
+
+* output arcs
+	tFailDisk systemFailure 1
+	tFailProcessor systemFailure 1
+	tRepairDisk diskSubsystem 1
+	tRepairProcessor processor 1
+end
+
+* inhibitor arcs
+	diskSubsystem tRepairDisk 1
+	processor tRepairProcessor 1
+end
+
+* end	<-- yes/no?
+
+
+func steadyStateAvailability() \
+	(1 - prempty(simplexModelA1, diskSubsystem) * (1- prempty(simplexModelA1, processor)
+
+expr steadyStateAvailability()
+
+*	Should we set the weight of the immediate transitions to 1, whatever or
+*		is it possible to skip them?
