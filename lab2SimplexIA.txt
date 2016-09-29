@@ -86,4 +86,10 @@ end
 end
 
 
+expr(prob(simplexIA, A))
+expr(prob(simplex2A, A))
+expr(prob(duplex2B, A) + prob(duplex2B, B) + prob(duplex2B, C) + prob(duplex2B, F))
+expr(prob(duplex3B, A) + prob(duplex3B, B) + prob(duplex3B, C) + prob(duplex3B, E))
+
+
 end

@@ -2,10 +2,10 @@ format 8
 
 * add time rates
 bind
-	lambdaProcessor ??
-	lambdaDisk ??
-	myProcessor ??
-	myDisk ??
+	lambdaProcessor 0.8e-3
+	lambdaDisk 1e-3
+	myProcessor 1
+	myDisk 0.5
 end
 
 gspn duplexModel1B
@@ -48,7 +48,7 @@ end
 
 
 func steadyStateAvailability() \
-	(1 - prempty(duplexModel1B, diskSubsystem) * (1- prempty(duplexModel1B, processor)
+	(1 - prempty(duplexModel1B, diskSubsystem) * (1 - prempty(duplexModel1B, processor)
 
 expr steadyStateAvailability()
 
